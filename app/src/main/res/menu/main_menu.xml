@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_in_one_day"
+        android:title="@string/menu_in_one_day" />
+    <item
+        android:id="@+id/item_in_seven_days"
+        android:title="@string/menu_in_seven_days" />
+    <item
+        android:id="@+id/item_in_thirty_days"
+        android:title="@string/menu_in_thirty_days"
+        app:showAsAction="withText" />
+
+    <item android:id="@+id/item_search"
+        android:title="@string/menu_search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="collapseActionView|always"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
+
+</menu>

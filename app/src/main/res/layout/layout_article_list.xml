@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.nytimes.app.viewmodel.ArticleListViewModel" />
+
+        <variable
+            name="visibility"
+            type="int" />
+    </data>
+
+    <android.support.v7.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/article_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="@{visibility}"
+        app:layoutManager="LinearLayoutManager"
+        tools:context="com.nytimes.app.view.ArticleListActivity"
+        tools:listitem="@layout/article_list_item" />
+
+</layout>

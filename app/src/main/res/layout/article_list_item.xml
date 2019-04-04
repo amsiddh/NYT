@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="article"
+            type="com.nytimes.app.model.Article" />
+        <variable
+            name="adapter"
+            type="com.nytimes.app.view.adapter.ArticleAdapter"/>
+    </data>
+
+    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{(view) -> adapter.onViewHolderClick(view, article)}"
+        android:textAppearance="?attr/textAppearanceListItem">
+
+        <ImageView
+            android:id="@+id/ic_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="6dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_forward_arrow" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_article"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:scaleType="centerCrop"
+            android:src="@android:color/transparent"
+            app:imageUrl="@{article}"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/ic_arrow"
+            android:layout_toEndOf="@id/image_article"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLines="2"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:text="@{article.title}"
+            tools:text="Why You Procrastinate (It Has Nothing to Do With Self-Control)" />
+
+        <TextView
+            android:id="@+id/text_byline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_title"
+            android:layout_marginTop="8dp"
+            android:layout_toStartOf="@id/ic_arrow"
+            android:layout_toEndOf="@id/image_article"
+            android:ellipsize="end"
+            android:textSize="15sp"
+            android:text="@{article.byline}"
+            tools:text="By CLAIRE CAIN MILLER and JONAH" />
+
+        <TextView
+            android:id="@+id/published_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_byline"
+            android:layout_marginTop="4dp"
+            android:layout_toStartOf="@id/ic_arrow"
+            android:drawableStart="@android:drawable/ic_menu_my_calendar"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:text="@{article.publishedDate}"
+            tools:text="2019-03-27"
+            android:visibility="@{article.isEmptyPublishedDate ? View.INVISIBLE : View.VISIBLE}"/>
+
+    </RelativeLayout>
+</layout>

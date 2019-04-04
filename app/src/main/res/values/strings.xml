@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">NY Times</string>
+
+    <string name="toolbar_subtitle">Most viewed in %1$s %2$s</string>
+    <string name="error_fetching_articles">Error while fetching articles, please try reload.</string>
+    <string name="no_articles">No articles available.</string>
+    <string name="no_network">Unable to connect, please check your network connection.</string>
+    <string name="error_unauthorized">Unauthorized request. Make sure proper api-key is set.</string>
+    <string name="error_reached_limit">Too many requests. You reached your per minute or per day rate limit.</string>
+
+    <string name="articles_in_one_day">1</string>
+    <string name="articles_in_seven_day">7</string>
+    <string name="articles_in_thirty_day">30</string>
+
+    <string name="menu_in_one_day">In 1 day</string>
+    <string name="menu_in_seven_days">In 7 days</string>
+    <string name="menu_in_thirty_days">In 30 Days</string>
+    <string name="menu_search">Search</string>
+
+    <string name="search_hint">Search Articles</string>
+
+</resources>
