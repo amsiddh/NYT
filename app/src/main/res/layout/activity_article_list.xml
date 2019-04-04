@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:subtitle="@{viewModel.toolbarSubtitle}"/>
+                app:subtitle="@{viewModel.toolbarSubtitle}" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -64,8 +64,9 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="100dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_refresh"
+                android:contentDescription="@null"
                 android:onClick="onReloadClick"
+                android:src="@drawable/ic_refresh"
                 app:visibility="@{viewModel.refreshButtonVisibility}" />
 
             <include

@@ -19,6 +19,7 @@ import com.nytimes.app.model.Article;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by sbingi on 3/31/2019.
@@ -66,14 +67,14 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
-                String searchString = constraint.toString().toLowerCase();
+                String searchString = constraint.toString().toLowerCase(Locale.ENGLISH);
                 if (searchString.isEmpty()) {
                     filteredArticles = articles;
                 } else {
                     List<Article> filteredArticlesNow = new ArrayList<>();
                     for (Article article : articles) {
-                        if (article.getTitle().toLowerCase().contains(searchString) ||
-                                article.getSynopsis().toLowerCase().contains(searchString)) {
+                        if (article.getTitle().toLowerCase(Locale.ENGLISH).contains(searchString) ||
+                                article.getSynopsis().toLowerCase(Locale.ENGLISH).contains(searchString)) {
                             filteredArticlesNow.add(article);
                         }
                     }
