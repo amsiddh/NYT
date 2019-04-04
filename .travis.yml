@@ -1,5 +1,12 @@
 language: android
 sudo: required
+
+addons:
+  sonarcloud:
+    organization: "amsiddh-github"
+    token:
+      secure: "d778d6515d6b5a55a36295073241901151254ebc"
+
 jdk: oraclejdk8
 
 android:
@@ -33,6 +40,7 @@ before_script:
 
 script:
   - ./gradlew build --stacktrace
+  - ./gradlew sonarqube
 
 
 
