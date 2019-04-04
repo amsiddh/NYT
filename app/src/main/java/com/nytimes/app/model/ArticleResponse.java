@@ -9,10 +9,25 @@ import java.util.List;
  */
 public class ArticleResponse {
 
-    public String status;
-    public String copyright;
+    private String status;
+    private String copyright;
     @SerializedName("num_results")
-    public Integer numResults;
-    public List<Article> results;
+    private Integer numResults;
+    private List<Article> results;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public String getCopyright() {
+        return copyright;
+    }
+
+    public Integer getNumResults() {
+        return numResults;
+    }
+
+    public List<Article> getResults() {
+        return results;
+    }
 }

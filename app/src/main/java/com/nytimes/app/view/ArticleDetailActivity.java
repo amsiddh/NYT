@@ -66,6 +66,6 @@ public class ArticleDetailActivity extends AppCompatActivity {
 
     @BindingAdapter({"headerImageUrl"})
     public static void loadHeaderImage(ImageView imageView, Article article) {
-        Glide.with(imageView.getContext()).load(article.getSmallImageUrl()).into(imageView);
+        Glide.with(imageView.getContext()).load(article.getLargeImageUrl()).into(imageView);
     }
 }

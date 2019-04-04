@@ -2,6 +2,7 @@ package com.nytimes.app.view;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ public class ArticleDetailFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public ArticleDetailFragment() {
+        // unused
     }
 
     public static ArticleDetailFragment newInstance(Article article) {
@@ -37,7 +39,7 @@ public class ArticleDetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FragmentArticleDetailBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_article_detail, container, false);

@@ -13,27 +13,81 @@ import java.util.List;
  */
 public class Article implements Parcelable {
 
-    public String url;
-    public String section;
-    public String byline;
-    public String type;
-    public String title;
+    private String url;
+    private String section;
+    private String byline;
+    private String type;
+    private String title;
     @SerializedName("abstract")
-    public String synopsis;
+    private String synopsis;
     @SerializedName("published_date")
-    public String publishedDate;
-    public String source;
-    public long id;
-    public long assetID;
-    public Integer views;
-    public List<Media> media;
-    public String uri;
+    private String publishedDate;
+    private String source;
+    private Integer views;
+    private List<Media> media;
+    private String uri;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public String getByline() {
+        return byline;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public String getPublishedDate() {
+        return publishedDate;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public List<Media> getMedia() {
+        return media;
+    }
+
+    public String getUri() {
+        return uri;
+    }
 
     public static class Media implements Parcelable {
-        public String caption;
-        public String copyright;
+        private String caption;
+        private String copyright;
         @SerializedName("media-metadata")
-        public List<MediaMetadata> mediaMetadata;
+        private List<MediaMetadata> mediaMetadata;
+
+        public String getCaption() {
+            return caption;
+        }
+
+        public String getCopyright() {
+            return copyright;
+        }
+
+        public List<MediaMetadata> getMediaMetadata() {
+            return mediaMetadata;
+        }
 
         protected Media(Parcel in) {
             caption = in.readString();
@@ -67,10 +121,26 @@ public class Article implements Parcelable {
     }
 
     public static class MediaMetadata implements Parcelable {
-        public String url;
-        public String format;
-        public Integer height;
-        public Integer width;
+        private String url;
+        private String format;
+        private Integer height;
+        private Integer width;
+
+        public String getUrl() {
+            return url;
+        }
+
+        public String getFormat() {
+            return format;
+        }
+
+        public Integer getHeight() {
+            return height;
+        }
+
+        public Integer getWidth() {
+            return width;
+        }
 
         protected MediaMetadata(Parcel in) {
             url = in.readString();
@@ -132,8 +202,6 @@ public class Article implements Parcelable {
         synopsis = in.readString();
         publishedDate = in.readString();
         source = in.readString();
-        id = in.readLong();
-        assetID = in.readLong();
         if (in.readByte() == 0) {
             views = null;
         } else {
@@ -153,8 +221,6 @@ public class Article implements Parcelable {
         dest.writeString(synopsis);
         dest.writeString(publishedDate);
         dest.writeString(source);
-        dest.writeLong(id);
-        dest.writeLong(assetID);
         if (views == null) {
             dest.writeByte((byte) 0);
         } else {
@@ -201,8 +267,8 @@ public class Article implements Parcelable {
         if (media != null && !media.isEmpty()
                 && media.get(0).mediaMetadata != null
                 && media.get(0).mediaMetadata.size() >= 3
-                && !TextUtils.isEmpty(media.get(0).mediaMetadata.get(3).url)) {
-            return media.get(0).mediaMetadata.get(3).url;
+                && !TextUtils.isEmpty(media.get(0).mediaMetadata.get(2).url)) {
+            return media.get(0).mediaMetadata.get(2).url;
         }
         return "";
     }

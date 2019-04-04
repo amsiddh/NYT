@@ -35,13 +35,12 @@ import java.util.List;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class ArticleListActivity extends AppCompatActivity implements ArticleAdapter.ArticleItemClickListener {
+public class ArticleListActivity extends AppCompatActivity implements
+        ArticleAdapter.ArticleItemClickListener, SearchView.OnQueryTextListener {
 
     private ArticleListViewModel articleListViewModel;
 
     private ActivityArticleListBinding binding;
-
-    private SearchView searchView;
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -86,30 +85,10 @@ public class ArticleListActivity extends AppCompatActivity implements ArticleAda
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         if (searchManager != null) {
-            searchView = (SearchView) menu.findItem(R.id.item_search).getActionView();
+            SearchView searchView = (SearchView) menu.findItem(R.id.item_search).getActionView();
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
             searchView.setMaxWidth(Integer.MAX_VALUE);
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    ArticleAdapter articleAdapter =
-                            ((ArticleAdapter)binding.layoutContent.articleList.getAdapter());
-                    if (articleAdapter != null) {
-                        articleAdapter.getFilter().filter(s);
-                    }
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String s) {
-                    ArticleAdapter articleAdapter =
-                            ((ArticleAdapter)binding.layoutContent.articleList.getAdapter());
-                    if (articleAdapter != null) {
-                        articleAdapter.getFilter().filter(s);
-                    }
-                    return false;
-                }
-            });
+            searchView.setOnQueryTextListener(this);
         }
         return true;
     }
@@ -163,6 +142,26 @@ public class ArticleListActivity extends AppCompatActivity implements ArticleAda
             Intent intent = new Intent(this, ArticleDetailActivity.class);
             intent.putExtra(ArticleDetailFragment.ARG_ARTICLE_ITEM, article);
             startActivity(intent);
+        }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        setSearchFilter(s);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        setSearchFilter(s);
+        return false;
+    }
+
+    private void setSearchFilter(String query) {
+        ArticleAdapter articleAdapter =
+                ((ArticleAdapter)binding.layoutContent.articleList.getAdapter());
+        if (articleAdapter != null) {
+            articleAdapter.getFilter().filter(query);
         }
     }
 

@@ -82,27 +82,11 @@ public class ArticleListViewModel extends ViewModel {
             articleService.popularArticles(timePeriod).enqueue(new Callback<ArticleResponse>() {
                 @Override
                 public void onResponse(Call<ArticleResponse> call, Response<ArticleResponse> response) {
-                    if (response.isSuccessful() && response.body() != null
-                            && response.body().results != null) {
-                        if (!response.body().results.isEmpty()) {
-                            showResultView();
-                            clearArticleList();
-                            articleList.setValue(response.body().results);
-                            currentArticlesTimePeriod = timePeriod;
-                        } else {
-                            showErrorView(R.string.no_articles);
-                        }
-                    } else if (response.code() == NYTApi.ErrorCode.UNAUTHORIZED) {
-                        showErrorView(R.string.error_unauthorized);
-                    } else if (response.code() == NYTApi.ErrorCode.LIMIT_REACHED) {
-                        showErrorView(R.string.error_reached_limit);
-                    }
+                    handleResponse(response, timePeriod);
                 }
 
                 @Override
                 public void onFailure(Call<ArticleResponse> call, Throwable t) {
-                    progressVisibility.set(View.INVISIBLE);
-                    infoMessageVisibility.set(View.VISIBLE);
                     if (t instanceof UnknownHostException) {
                         showErrorView(R.string.no_network);
                     } else {
@@ -110,6 +94,24 @@ public class ArticleListViewModel extends ViewModel {
                     }
                 }
             });
+        }
+    }
+
+    private void handleResponse(Response<ArticleResponse> response, final String timePeriod) {
+        if (response.isSuccessful() && response.body() != null
+                && response.body().getResults() != null) {
+            if (!response.body().getResults().isEmpty()) {
+                showResultView();
+                clearArticleList();
+                articleList.setValue(response.body().getResults());
+                currentArticlesTimePeriod = timePeriod;
+            } else {
+                showErrorView(R.string.no_articles);
+            }
+        } else if (response.code() == NYTApi.ErrorCode.UNAUTHORIZED) {
+            showErrorView(R.string.error_unauthorized);
+        } else if (response.code() == NYTApi.ErrorCode.LIMIT_REACHED) {
+            showErrorView(R.string.error_reached_limit);
         }
     }
 

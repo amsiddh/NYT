@@ -4,7 +4,6 @@ import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,8 +72,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                 } else {
                     List<Article> filteredArticlesNow = new ArrayList<>();
                     for (Article article : articles) {
-                        if (article.title.toLowerCase().contains(searchString) ||
-                                article.synopsis.toLowerCase().contains(searchString)) {
+                        if (article.getTitle().toLowerCase().contains(searchString) ||
+                                article.getSynopsis().toLowerCase().contains(searchString)) {
                             filteredArticlesNow.add(article);
                         }
                     }
@@ -96,16 +95,16 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         };
     }
 
-    public class ArticleViewHolder extends RecyclerView.ViewHolder {
+    class ArticleViewHolder extends RecyclerView.ViewHolder {
 
         final ArticleListItemBinding binding;
 
-        public ArticleViewHolder(@NonNull ArticleListItemBinding binding) {
+        ArticleViewHolder(@NonNull ArticleListItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public void bindArticleView(Article article) {
+        void bindArticleView(Article article) {
             binding.setArticle(article);
             binding.executePendingBindings();
         }
