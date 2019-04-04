@@ -155,8 +155,4 @@ public class ArticleListViewModel extends ViewModel {
                 articleTimePeriod, (Integer.valueOf(articleTimePeriod) == 1 ? "day" : "days")));
     }
 
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-    }
 }
