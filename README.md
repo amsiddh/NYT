@@ -22,11 +22,10 @@ Additionally LiveData is also used, as it's lifecycle-aware and is an observable
 This app also uses [Travis](https://travis-ci.org/) for a continuous integration to build the app as code is pushed to repository. It's configuration details are present in [.travis.yml](https://github.com/amsiddh/NYT/blob/master/.travis.yml)
 
 ### Sonarqube
-This app uses the Sonarqube to monitor and analyze code quality and technical debts. The complete analysed report is shown in there dashboard with it's details to undarstand it. The process is automated as code pushed to repository, Travis CI will build the applicaiton on successful build Sonar scanner analysis is being initiated. Its configuration details are present in [sonar-project.properties](https://github.com/amsiddh/NYT/blob/master/sonar-project.properties)
+This app uses the Sonarqube to monitor and analyze code quality and technical debts. The complete analysed report is shown in there dashboard with it's details to undarstand it. The process is automated as code pushed to repository, Travis CI will build the applicaiton on successful build Sonar scanner analysis is being initiated. Its configuration details are present in [sonar-project.properties](https://github.com/amsiddh/NYT/blob/master/sonar-project.properties) and [.travis.yml](https://github.com/amsiddh/NYT/blob/master/.travis.yml)
 
 ### Command line scripts
 From command line move to project root and use below commands
-gradlew lint  - For Lint check, the detail report will be generated in app/build/outputs/lint/lint.html
-gradlew build - For building the app
-
+* gradlew lint  - For Lint check, the detail report will be generated in /app/build/outputs/lint/lint.html
+* gradlew build - For building the app
 
